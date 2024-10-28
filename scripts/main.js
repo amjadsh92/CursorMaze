@@ -1,41 +1,60 @@
+var boundaries = document.querySelectorAll(".boundary");
+var start = document.getElementById("start");
+var end = document.getElementById("end");
+var statu = document.getElementById("status");
+var won = false;
+var lost = false;
 
- var boundaries =  document.querySelectorAll(".boundary");
- var start = document.getElementById("start");
- var end = document.getElementById("end")
- var status = document.getElementById("end")
+var gameRunning = false;
 
+start.addEventListener("mouseenter", function () {
+  won = false;
+  lost = false;
 
- var gameRunning = False;
- 
- start.addEventListener("mouseenter", function(){
+  gameRunning = true;
+  statu.textContent = "The game has started";
+  reset();
+});
 
-    gameRunning = true
-    status.textContent = "The game has started"
+end.addEventListener("mouseenter", function () {
+  if (won || lost) {
+    return;
+  }
 
- });
+  if (gameRunning) {
+    win();
+  }
+});
 
-
- end.addEventListener("mouseenter", function(){
-
-    if(gameRunning){
-
-        lose();
-
+boundaries.forEach(function (boundary) {
+  boundary.addEventListener("mouseenter", function () {
+    if (won || lost) {
+      return;
     }
 
- });
+    if (gameRunning) {
+      lose();
+    }
+  });
+});
 
- boundaries.forEach(function(boundary){
-    boundary.addEventListener("mouseEnter", function(){
-                                    if (gameRunning){
+function lose() {
+  gameRunning = false;
+  boundaries.forEach(function (boundary) {
+    boundary.classList.add("highlighted");
+  });
+  statu.textContent = "You Lost";
+  lost = true;
+}
 
-                                    }
-    })
- })
+function win() {
+  gameActive = false;
+  statu.textContent = "You Won";
+  won = true;
+}
 
-
- function lose(){
-    gameRunning = false
-    boundaries.forEach( function(boundary){ boundary.classList.add("highlighted")})
-    status.textContent = "You Lost"
- }
+function reset() {
+  boundaries.forEach(function (boundary) {
+    boundary.classList.remove("highlighted");
+  });
+}
