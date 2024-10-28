@@ -7,3 +7,27 @@
 
  var gameRunning = False;
  
+ start.addEventListener("mouseenter", function(){
+
+    gameRunning = true
+    status.textContext = "The game has started"
+
+ });
+
+
+ end.addEventListener("mouseenter", function(){
+
+    if(gameRunning){
+
+    }
+
+ });
+
+ boundaries.forEach(function(boundary){
+    boundary.addEventListener("mouseEnter", function(){
+                                    if (gameRunning){
+
+                                    }
+    })
+ })
+
