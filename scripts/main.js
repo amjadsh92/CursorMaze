@@ -48,7 +48,7 @@ function lose() {
 }
 
 function win() {
-  gameActive = false;
+  gameRunning = false;
   statu.textContent = "You Won";
   won = true;
 }
