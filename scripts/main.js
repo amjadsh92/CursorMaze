@@ -10,7 +10,7 @@
  start.addEventListener("mouseenter", function(){
 
     gameRunning = true
-    status.textContext = "The game has started"
+    status.textContent = "The game has started"
 
  });
 
@@ -18,6 +18,8 @@
  end.addEventListener("mouseenter", function(){
 
     if(gameRunning){
+
+        lose();
 
     }
 
@@ -31,3 +33,9 @@
     })
  })
 
+
+ function lose(){
+    gameRunning = false
+    boundaries.forEach( function(boundary){ boundary.classList.add("highlighted")})
+    status.textContent = "You Lost"
+ }
